@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
-
 import { initializeApp } from "firebase/app";
+
+import { getFirestore, setDoc } from "firebase/firestore";
 
 import { getAuth } from "firebase/auth";
 
@@ -34,5 +35,22 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
+// Initialize Cloud Firestore and get a reference to the service
+const firestore = getFirestore(app);
+
+// const specialDay = doc(db, 'dailyBlog/2022-12-13');
+
+// function writeDaily(){
+//   const docData = {
+//     description: 'test daily',
+//     price: 3.99,
+//     milk : 'whole',
+//     vegan : false,
+//   };
+//   setDoc(specialDay,docData);
+// }
+
+// writeDaily();
 
 export const auth = getAuth(app);
