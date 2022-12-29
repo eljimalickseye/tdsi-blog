@@ -1,8 +1,9 @@
 import React from "react";
 import { NavigationContainer } from '@react-navigation/native';
-import { StyleSheet, Text, View,ImageBackground,Button,SafeAreaView,TextInput,TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View,ImageBackground,Button,SafeAreaView,TextInput,TouchableOpacity, ScrollView} from 'react-native';
 import ReadData from "../src/GetAllBog";
-
+import Refresh from "../src/Refresh";
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 const imageBackground = { uri: "https://images.unsplash.com/photo-1522252234503-e356532cafd5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=725&q=80" };
 
@@ -15,25 +16,17 @@ function DetailPostScreen({ navigation }) {
       navigation.navigate('Blog')
   }
     return (
-      <View style={styles.container}>
+      <ScrollView  style={styles.container}>
   
-
+    
   
       <View style={styles.container1}>
-     <ImageBackground source={imageBackground} resizeMode="cover" style={styles.imageBackground} blurRadius={6} imageStyle={styles.imageStyle}>
-        <Text style={styles.text}>Tdsi starting Blog exploration</Text>
-       
-        <View style={styles.DateAndCategory}>
-          <Text style={styles.Date}>12 janv 2019</Text>
-          <Text style={styles.Category}> ~Cosmo</Text>
-        </View>
-  
-      </ImageBackground>
+
  
   
       </View>
    
-        <View>
+        <View style={styles.tester} >
         <TouchableOpacity
            style={styles.button}
            onPress={()=> Log_out()}
@@ -42,10 +35,11 @@ function DetailPostScreen({ navigation }) {
         </TouchableOpacity>
         <View style={styles.readdata}>
         <ReadData />
-        </View>
+        <Refresh />
+        </View >
       
         </View>
-      </View>
+      </ScrollView >
     );
     }
 
@@ -54,9 +48,13 @@ function DetailPostScreen({ navigation }) {
           flex: 1,
           backgroundColor: '#fff',
         },
+        tester: {
+          opacity:0.8,
+        },
         readdata:{
            marginTop:50,
-           marginBottom:50
+           marginBottom:10,
+           backgroundColor:'gold'
         },
 
         bodyText:{

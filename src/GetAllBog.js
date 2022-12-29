@@ -8,6 +8,7 @@ import { getFirestore, getDocs, setDoc , doc, addDoc,collection} from "firebase/
 import { firebase } from "@react-native-firebase/firestore";
 import 'firebase/firestore';
 
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 
 
@@ -78,6 +79,7 @@ const ReadData=()=>{
      
     const querySnapshot = await getDocs(collection(firestore, "blog"));
     const blogs =[]
+    
     querySnapshot.forEach((doc) => {
       blogs.push({
         id: doc.id,
@@ -94,6 +96,7 @@ const ReadData=()=>{
       // console.log(`${doc.id} => ${doc.data().title}`);
     });
 
+    
     setBlogs(blogs)
      
   };
@@ -111,13 +114,14 @@ const ReadData=()=>{
              <Text  style={styles.itemCategory}>{item.category}</Text>
              <Text  style={styles.itemDescription}>{item.description}</Text>
              <Text  style={styles.itemTitle}>{item.title}</Text>
+             <Text  style={styles.itemTitle}>{item.image}</Text>
           </View>
             
          </Pressable>
         )}
       />
     </View>
-      <Button onPress={Mydata} title="Look Data" />
+      <Button onPress={Mydata} title="Look Data"/>
     </View>
 
     // <View style={{ flex:1,marginTop:100}}>

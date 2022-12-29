@@ -1,12 +1,9 @@
 import React from "react";
-import { StyleSheet, Text, View,ImageBackground,Button,SafeAreaView,TextInput,TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View,ImageBackground,Button,SafeAreaView,TextInput,TouchableOpacity,ScrollView} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 
 import { firebaseConfig } from '../firebaseConfig';
 import { getAuth,signInWithEmailAndPassword } from 'firebase/auth';
-
-const imageBackground = { uri: "https://images.unsplash.com/photo-1522252234503-e356532cafd5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=725&q=80" };
-const imageBackgroundRegister = { uri: "https://images.unsplash.com/photo-1614029951470-ef9eb9952be7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" };
 
 
 const auth = getAuth()
@@ -43,44 +40,61 @@ function LoginScreen ({ navigation }) {
   
   
       return (
-      <View style={styles.container}>
-        <ImageBackground source={imageBackgroundRegister} resizeMode="cover" style={styles.imageBackground} blurRadius={1} >
-        <Text style={styles.register}>Login</Text>
-        </ImageBackground>
+      <ScrollView style={styles.container}>
+
+        <View style={styles.itemLog}>
+      
+        <Text style={styles.register}>TDSI</Text>
+        <Text style={styles.blog}>Blog</Text>
+
+        </View>
+     
         <SafeAreaView>
+
+        <View style={styles.email}>
+        <Text style={styles.itemep} >Email</Text>
         <TextInput
           style={styles.input}
           onChangeText={onChangeEmail}
           placeholder={"email"}
           keyboardType={"email"}
         />
-  
+        </View>
+
+        <View style={styles.email}>
+         <Text style={styles.itemep} >Mot de passe</Text>
         <TextInput
           style={styles.input}
           onChangeText={onChangePassword}
-          placeholder={"password"}
+          placeholder={"mot de passe"}
           keyboardType={"visible-password"}
         />
-  
-        <View style={styles.btnCreateAccount}>
-      
-        <TouchableOpacity
+       </View>
+       <View style={styles.btnConnect}>
+       <TouchableOpacity
            style={styles.button}
            onPress={()=>signUserWithEmailAndPassword(email,password) }
         >
-          <Text>Press Here</Text>
+          <Text style={styles.colorText}> SE CONNECTER</Text>
         </TouchableOpacity>
-  
+       </View>
+       
+        <View style={styles.btnCreateAccount} >
+      
+
+         <Text style={styles.quest}>Vous n'etes pas encore membre ?</Text>
+         <View style={styles.btnConnect}> 
         <TouchableOpacity
-           style={styles.button}
+           style={styles.btnRegister}
            onPress={()=> register()}
         >
-          <Text>register</Text>
+          <Text style={styles.formText}>S'ENREGISTRER</Text>
         </TouchableOpacity>
+        </View>  
         </View>
       </SafeAreaView>
   
-      </View>
+      </ScrollView>
     );
   }
 
@@ -91,101 +105,89 @@ const styles = StyleSheet.create({
       backgroundColor: '#fff',
     },
     btnCreateAccount:{
-      margin:40,
-  
+      margin:12,
+      marginTop:200,
     },
-  
-    button:{
-      borderStyle:'dashed',
+
+    btnConnect:{
+      margin:12,
+      marginTop:28,
+      height:43,
+      lineHeight:50
     },
+
+    title:{
+      textAlign: 'center',
+      marginVertical: 8,
+    },
+
+    itemLog:{
+      display:'flex',
+      justifyContent:'center',
+      alignItems:'center',
+      height:210,
+    },
+    register:{
+        fontSize:50,
+    },
+
+   blog:{
+        fontSize:23,
+        marginRight:55,
+        color:'gold',
+    },
+
     input: {
-      height: 40,
-      margin: 12,
+      height: 50,
       borderWidth: 1,
       padding: 10,
       borderRadius:8,
+      marginTop:10,
     },
-    barre12:{
-      flexDirection:'row'
+
+    email:{
+      margin: 12,
     },
-    barre:{
-      height:100,
+    itemep:{
+     color:'grey'
+    },
+
+    button:{
+      width:'100%',
+      height:50,
       backgroundColor:'black',
-      color:'white',
-      fontSize:25
-    },
-    barre1:{
-  
-    },
-    TextStyle:{
-      color:'white'
-    },
-    TextStyle0:{
-      color:'grey'
-    },
-    TextStyle1:{
-      color:'blue'
-    },
-    TextStyle2:{
-      color:'green'
-    },
-    TextStyle3:{
-      color:'yellow'
-    },
-    TextStyle4:{
-      color:'orange'
-    },
-    bodyText:{
-      width:'98%',
-      height:100,
       justifyContent:'center',
       alignItems:'center',
-      marginTop:29,
-      backgroundColor:'black',
-      padding:20,
-      margin:5
+      borderRadius:10,
+      marginBottom:25,
     },
-    DateAndCategory:{
-      flexDirection:'row',
-       justifyContent:'flex-start',
-       marginLeft:10
-    },
-    Date:{
+
+    colorText:{
       color:'white',
+      fontSize:20,
+      fontWeight:'bold',
+    }, 
+
+    formText:{
+      fontSize:20,
+      fontWeight:'bold',
     },
-    Category:{
-      color:'white',
-    },
-    container1:{
-      backgroundColor:'black',
+
+    btnRegister:{
       width:'100%',
+      height:50,
+      justifyContent:'center',
+      alignItems:'center',
+      borderRadius:10,
+      marginBottom:25,
+     backgroundColor:'white',
+     borderWidth:2,
+     borderColor:'black'
     },
-    imageBackground:{
-      width:'100%',
-      height:300,
-      justifyContent:'flex-end',
-    },
-    text:{
-      color:'white',
-      fontSize:30,
-      lineHeight:50,
-      textAlign:'justify',
-      backgroundColor:'#000000c0',
-      marginLeft:10,
-    },
-    register:{
-      color:'white',
-      fontSize:30,
-      lineHeight:50,
-      textAlign:'justify',
-      backgroundColor:'#000000c0',
-      flex:0,
-      opacity:2,
-      height:200
-    },
-    imageStyle:{
-       borderRadius:10,
-    },
+    quest:{
+      alignSelf:'center'
+    }
+
   });
   
 

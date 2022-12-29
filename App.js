@@ -6,7 +6,8 @@ import LoginScreen from "./component/LoginScreen";
 import RegisterScreen from "./component/RegisterScreen";
 import DetailPostScreen from "./component/DetailPostScreen";
 import AddBlog from "./src/AddBlog";
-
+import UploadScreen from "./src/UploadScreen";
+import { BlogsScreen } from "./src/BlogsScreen";
 // const auth = getAuth()
 // const auth = firebaseConfig.auth
 
@@ -34,11 +35,13 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
 <NavigationContainer>
-      <Stack.Navigator  initialRouteName="Register">
-        <Stack.Screen name="Register" component={RegisterScreen} />
-        <Stack.Screen name="DetailsPost" component={DetailPostScreen} />
-        <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen name="Blog" component={AddBlog} />
+      <Stack.Navigator  initialRouteName="Login">
+      <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Register" component={RegisterScreen} options={{headerShown:false}} />
+        <Stack.Screen name="DetailsPost" component={DetailPostScreen}   />
+        <Stack.Screen name="Blog" component={AddBlog}  />
+        <Stack.Screen name="BlogsScreen" component={BlogsScreen} options={{headerShown:false}} />
+        <Stack.Screen name="ImagePik" component={UploadScreen} />
       </Stack.Navigator>
 </NavigationContainer>
 
