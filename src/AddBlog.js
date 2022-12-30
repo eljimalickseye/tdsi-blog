@@ -1,5 +1,7 @@
 import React , { useState } from "react";
 
+// import './style.css';
+
 import { View, Text, Button, ImageBackground ,FlatList, TextInput, StyleSheet,Image, ScrollView,TouchableOpacity} from 'react-native';    
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -9,6 +11,8 @@ import { getFirestore, setDoc , doc, addDoc,collection} from "firebase/firestore
 import UploadScreen from "./UploadScreen";
 
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+
+import { Category } from "./Category";
 
 
 
@@ -74,16 +78,41 @@ function AddBlog () {
 
   //   });
   // };
+//   <View style={styles.catContainer}> 
+//   <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} >
+//   {categories.map((category, index) => {
+//       return(
+//           <Category
+//               value={category}
+//               onPress={()=>setSelectedCategory(category)}
+//               selected={selectedCategory===category}
+//               key={`${category}-${index}`}
+//           />
+//       )
+//   })}
+//   </ScrollView>
+// </View>
+
+const [selectedCategory, setSelectedCategory] = React.useState("security");
 
   const values = ['security', 'dev', 'Systems','Network'];
 
   const renderItem = ({ item }) => (
     <View style={styles.flat}>
-    <TouchableOpacity onPress={() => setCategory(item)
-      
-    } style={styles.flatTouch}>
-      <Text style={styles.flatText}>{item}</Text>
-    </TouchableOpacity>
+   
+   <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} >
+                    {values.map((item, index) => {
+                        return(
+                            <Category
+                                value={item}
+                                onPress={()=>setSelectedCategory(item)}
+                                selected={selectedCategory===item}
+                                key={`${item}-${index}`}
+                            />
+                        )
+                    })}
+                    </ScrollView>
+  
     </View>
   );
 
@@ -102,7 +131,7 @@ function AddBlog () {
   };
 
   return (
- <ScrollView>
+ <ScrollView style={{backgroundColor:'white'}}>
 
     {/* <View style={styles.container}>
         <Image
@@ -236,6 +265,7 @@ const styles = StyleSheet.create({
      margin:18,
      borderRadius:10,
      textDecorationLine:'none',
+     padding:10,
    },
 
    image:{
@@ -245,9 +275,12 @@ const styles = StyleSheet.create({
    },
    Upload:{
     width:200,
-    backgroundColor:'grey',
-    color:'white',
-    alignSelf:'center'
+    backgroundColor:'white',
+    color:'black',
+    alignSelf:'center',
+    padding:5,
+    borderRadius:5,
+    borderWidth:1,
    },
    flat:{
     flex:1,
@@ -258,7 +291,7 @@ const styles = StyleSheet.create({
      marginLeft:20,
      alignItems:'center',
      borderRadius:15,
-     borderWidth:1,
+    //  borderWidth:1,
      marginBottom:25,
      marginTop:10
    },
@@ -284,8 +317,9 @@ const styles = StyleSheet.create({
     margin:20,
     borderWidth:1,
     borderRadius:10,
-    height:200,
+    height:150,
     width:'86%',
+    padding:5,
    },
    Uploadimage:{
     width:'100%',
