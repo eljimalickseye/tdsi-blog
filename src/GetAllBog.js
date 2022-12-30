@@ -53,25 +53,25 @@ const ReadData=()=>{
   // const todoref = firestore.collection("blog");
   
  
-  // useEffect(() => {
+  // useEffect(async() => {
         
-  //   todoref.onSnapshot(
+  //   const querySnapshot = await getDocs(collection(firestore, "blog"));
   //     querySnapshot => {
   //       const blogs = []
   //       querySnapshot.forEach((doc)=>{
-  //         const { category, createtAt,description,image,title} = doc.data()
+  //         // const { category, createtAt,description,image,title} = doc.data()
   //         blogs.push({
-            // id: doc.id,
-            // category:doc.data().category,
-            // createtAt:doc.data().createtAt,
-            // description:doc.data().description,
-            // image:doc.data().image,
-            // title:doc.data().title,
+  //           id: doc.id,
+  //           category:doc.data().category,
+  //           createtAt:doc.data().createtAt,
+  //           description:doc.data().description,
+  //           image:doc.data().image,
+  //           title:doc.data().title,
   //         })
   //       })
   //        setBlogs(blogs)
   //     }
-  //   )
+    
   // }, []);
    // const { category, createtAt,description,image,title} = doc.data()
 

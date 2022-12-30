@@ -2,8 +2,6 @@ import React from "react";
 import { NavigationContainer } from '@react-navigation/native';
 import { StyleSheet, Text, View,ImageBackground,Button,SafeAreaView,TextInput,TouchableOpacity, ScrollView} from 'react-native';
 import ReadData from "../src/GetAllBog";
-import Refresh from "../src/Refresh";
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 const imageBackground = { uri: "https://images.unsplash.com/photo-1522252234503-e356532cafd5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=725&q=80" };
 
@@ -35,7 +33,6 @@ function DetailPostScreen({ navigation }) {
         </TouchableOpacity>
         <View style={styles.readdata}>
         <ReadData />
-        <Refresh />
         </View >
       
         </View>

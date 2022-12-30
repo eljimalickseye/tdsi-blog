@@ -159,24 +159,35 @@ function AddBlog () {
       </View>
 
 
-      <View>
+      <View style={styles.flatDeco}>
+      <Text style={styles.flattextTitle}>Title</Text>
        <TextInput
+        style={styles.textTitle}
         placeholder="title"
         onChangeText={text => setTitle(text)}
       />
       </View>
 
-     <View>
-      <TextInput
-        placeholder="description"
+     <View style={styles.flatDeco}>
+     <Text style={styles.flattextTitle}>Description</Text>
+      <TextInput style={styles.flattextDesc}
         onChangeText={text => setDescription(text)}
       />
      </View>
 
   
-      </View>
-      <Text>Add a new blog to the database:</Text>
-      <Button onPress={AddBlogs} title="Send Data" color='black' />
+      </View >
+
+      {/* <Button onPress={AddBlogs} title="Send Data" color='black' /> */}
+
+      <View style={styles.btnConnect}>
+       <TouchableOpacity
+           style={styles.button}
+           onPress={AddBlogs}
+        >
+          <Text style={styles.colorText}> Creer Blog</Text>
+        </TouchableOpacity>
+       </View>
 
 
     </View>
@@ -193,7 +204,38 @@ const styles = StyleSheet.create({
     alignItems:'center',
     justifyContent:'center',
     marginTop:10,
+   },
+
+   btnConnect:{
+    margin:12,
+    marginTop:28,
+    height:43,
+    lineHeight:50,
+    backgroundColor:'white'
+  },
+  button:{
     width:'100%',
+    height:50,
+    backgroundColor:'black',
+    justifyContent:'center',
+    alignItems:'center',
+    borderRadius:10,
+    marginBottom:25,
+  },
+  colorText:{
+    color:'white',
+    fontSize:20,
+    fontWeight:'bold',
+  }, 
+   textTitle:{
+     width:'86%',
+     height:50,
+    borderWidth:1,
+    color:'black',
+    fontSize:18,
+     margin:18,
+     borderRadius:10,
+     textDecorationLine:'none',
    },
 
    image:{
@@ -233,6 +275,17 @@ const styles = StyleSheet.create({
    flattextCategory:{
      marginLeft:25,
      color:'grey',
+   },
+   flattextTitle:{
+    marginLeft:20,
+    color:'grey',
+   },
+   flattextDesc:{
+    margin:20,
+    borderWidth:1,
+    borderRadius:10,
+    height:200,
+    width:'86%',
    },
    Uploadimage:{
     width:'100%',
