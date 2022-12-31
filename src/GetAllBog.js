@@ -111,10 +111,12 @@ const ReadData=()=>{
         renderItem={({ item }) => (
           <Pressable  style={styles.container}>
           <View  style={styles.innercontainer}>
-             <Text  style={styles.itemCategory}>{item.category}</Text>
-             <Text  style={styles.itemDescription}>{item.description}</Text>
-             <Text  style={styles.itemTitle}>{item.title}</Text>
-             <Text  style={styles.itemTitle}>{item.image}</Text>
+             <Text  style={styles.itemImage}>{item.image}</Text>
+             <View  style={styles.innercontainer2}>
+             <Text  style={styles.itemTitle}>{item.title} ~</Text>
+             <Text  style={styles.itemCategory}>{item.category} ~</Text>
+             {/* <Text  style={styles.itemDescription}>{item.description}</Text> */}
+             </View>
           </View>
             
          </Pressable>
@@ -147,27 +149,42 @@ const ReadData=()=>{
 
 const styles = StyleSheet.create({
   container:{
-    backgroundColor:'black',
-    padding:15,
+    display:'flex',
     borderRadius:15,
     margin:5,
     marginHorizontal:10,
+    width:160,
+    height:200,
+    justifyContent:'center',
+    borderWidth:2,
+    
   },
   innercontainer:{
     alignItems:'center',
     flexDirection:'column'
   },
+  innercontainer2:{
+    display:'flex',
+    alignItems:'center',
+    flexDirection:'row',
+    columnGap:2,
+    borderWidth:1,
+    width:160,
+    justifyContent:'center',
+  },
   itemCategory:{
     fontWeight:'bold',
-    color:'white'
   },
   itemDescription:{
     fontWeight:'bold',
-    color:'white'
   },
   itemTitle:{
     fontWeight:'bold',
-    color:'red'
+  },
+  itemImage:{
+    borderWidth:1,
+    height:100,
+    width:132
   },
 })
 

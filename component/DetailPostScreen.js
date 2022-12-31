@@ -51,7 +51,6 @@ function DetailPostScreen({ navigation }) {
         readdata:{
            marginTop:50,
            marginBottom:10,
-           backgroundColor:'gold'
         },
 
         bodyText:{
