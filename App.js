@@ -8,6 +8,7 @@ import DetailPostScreen from "./component/DetailPostScreen";
 import AddBlog from "./src/AddBlog";
 import UploadScreen from "./src/UploadScreen";
 import { BlogsScreen } from "./src/BlogsScreen";
+import DetailPost from "./src/DetailPost";
 // const auth = getAuth()
 // const auth = firebaseConfig.auth
 
@@ -40,6 +41,7 @@ export default function App() {
         <Stack.Screen name="Register" component={RegisterScreen} options={{headerShown:false}} />
         <Stack.Screen name="DetailsPost" component={DetailPostScreen}   />
         <Stack.Screen name="Blog" component={AddBlog}  />
+        <Stack.Screen name="Detail" component={DetailPost}  />
         <Stack.Screen name="BlogsScreen" component={BlogsScreen} options={{headerShown:false}} />
         <Stack.Screen name="ImagePik" component={UploadScreen} />
       </Stack.Navigator>

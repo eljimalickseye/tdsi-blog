@@ -56,6 +56,10 @@ function RegisterScreen({ navigation }) {
   const ScreenBlog =()=>{
     navigation.navigate('BlogsScreen')
   }
+
+  const Detail =()=>{
+    navigation.navigate('Detail')
+  }
       return (
       <ScrollView style={styles.container}>
         
@@ -142,6 +146,13 @@ function RegisterScreen({ navigation }) {
            onPress={()=> ScreenBlog()}
         >
           <Text style={styles.formText}> Screen</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+           style={styles.btnLogin}
+           onPress={()=> Detail()}
+        >
+          <Text style={styles.formText}> Detail</Text>
         </TouchableOpacity>
         </View>
       </SafeAreaView>

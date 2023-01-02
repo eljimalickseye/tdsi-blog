@@ -1,6 +1,6 @@
 import React , { useState, useEffect } from "react";
 
-import { View, Text, Button, ImageBackground , TextInput,FlatList, Pressable, StyleSheet} from 'react-native';    
+import { View, Text, TouchableOpacity, ImageBackground , TextInput,FlatList, Pressable, StyleSheet} from 'react-native';    
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 
@@ -75,6 +75,7 @@ const ReadData=()=>{
   // }, []);
    // const { category, createtAt,description,image,title} = doc.data()
 
+   useEffect(() => {
   const Mydata = async() =>{
      
     const querySnapshot = await getDocs(collection(firestore, "blog"));
@@ -100,21 +101,26 @@ const ReadData=()=>{
     setBlogs(blogs)
      
   };
+  Mydata()
+},[]);
 
   return(
       
-    <View>
-       <View>
-      <FlatList
+    <View style={{width:'100%',backgroundColor:'whitesmoke'}}>
+       <View >
+        
+      <FlatList 
         data={blogs}
+        // horizontal={true}
         keyExtractor={(item) => item.id}
+        numColumns={2}
         renderItem={({ item }) => (
           <Pressable  style={styles.container}>
           <View  style={styles.innercontainer}>
-             <Text  style={styles.itemImage}>{item.image}</Text>
+             {/* <Text  style={styles.itemImage}>{item.image}</Text> */}
              <View  style={styles.innercontainer2}>
              <Text  style={styles.itemTitle}>{item.title} ~</Text>
-             <Text  style={styles.itemCategory}>{item.category} ~</Text>
+             <Text  style={styles.itemCategory}>{item.category}</Text>
              {/* <Text  style={styles.itemDescription}>{item.description}</Text> */}
              </View>
           </View>
@@ -123,8 +129,10 @@ const ReadData=()=>{
         )}
       />
     </View>
-      <Button onPress={Mydata} title="Look Data"/>
+
     </View>
+
+    
 
     // <View style={{ flex:1,marginTop:100}}>
     //    <FlatList
@@ -142,49 +150,74 @@ const ReadData=()=>{
     //       )}
     //    />
 
-
     // </View>
         
 )};
 
 const styles = StyleSheet.create({
+
   container:{
     display:'flex',
     borderRadius:15,
-    margin:5,
-    marginHorizontal:10,
+    margin:10,
     width:160,
     height:200,
     justifyContent:'center',
     borderWidth:2,
-    
+    backgroundColor:'black'
   },
   innercontainer:{
     alignItems:'center',
-    flexDirection:'column'
+    flexDirection:'column',
   },
   innercontainer2:{
     display:'flex',
     alignItems:'center',
     flexDirection:'row',
     columnGap:2,
-    borderWidth:1,
-    width:160,
+    width:'auto',
     justifyContent:'center',
   },
   itemCategory:{
     fontWeight:'bold',
+    fontSize:18,
+    color:'white'
   },
   itemDescription:{
     fontWeight:'bold',
   },
   itemTitle:{
     fontWeight:'bold',
+    fontSize:18,
+    color:'white'
   },
   itemImage:{
     borderWidth:1,
     height:100,
-    width:132
+  },
+
+  btnConnect:{
+    margin:12,
+    marginTop:28,
+    height:43,
+    lineHeight:50
+  },
+
+  formText:{
+    fontSize:20,
+    fontWeight:'bold',
+  },
+
+  btnRegister:{
+    width:'100%',
+    height:50,
+    justifyContent:'center',
+    alignItems:'center',
+    borderRadius:10,
+    marginBottom:25,
+   backgroundColor:'white',
+   borderWidth:2,
+   borderColor:'black'
   },
 })
 

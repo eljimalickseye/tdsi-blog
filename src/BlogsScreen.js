@@ -75,7 +75,7 @@ export function BlogsScreen({navigation}) {
   
 
     const goToDetailPost = (image, title, description, category, date)=>{
-        navigation.navigate('DetailPost', {
+        navigation.navigate('DetailsPost', {
             imageUri:image, 
             title:title, 
             description:description, 

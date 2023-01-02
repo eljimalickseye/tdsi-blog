@@ -1,101 +1,237 @@
-import React from "react";
-import { NavigationContainer } from '@react-navigation/native';
-import { StyleSheet, Text, View,ImageBackground,Button,SafeAreaView,TextInput,TouchableOpacity, ScrollView} from 'react-native';
+import React, {useState} from "react";
+import {  StyleSheet, TextInput, Text, View, Pressable, ScrollView, Image } from "react-native";
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import Icon from 'react-native-vector-icons/Entypo';
+import Pluscircle from 'react-native-vector-icons/AntDesign';
+import Post from "../src/Post";
 import ReadData from "../src/GetAllBog";
 
-const imageBackground = { uri: "https://images.unsplash.com/photo-1522252234503-e356532cafd5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=725&q=80" };
 
 
-function DetailPostScreen({ navigation }) {
 
-    const Log_out=()=>{
-   
-      // logout
-      navigation.navigate('Blog')
-  }
-    return (
-      <ScrollView  style={styles.container}>
+
+import { Category } from "../src/Category";
+
+
+export function DetailPostScreen({navigation}) {
+    const img1 = require("../assets/imag24.jpg");
+
+    const [blogs, setBlogs] = useState([]);
+
+    const categories = ['Tous', 'Dev' ,'Sécurité', 'Système', 'Réseau'];
+    const [selectedCategory, setSelectedCategory] = React.useState("Tous");
+    const dat = "20 Juin 2022";
+    const des = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.\n\n It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
+    const Data = [
+        {
+            image:"https://cdn.pixabay.com/photo/2016/11/29/06/18/home-office-1867761_960_720.jpg",
+            category:"Dev",
+            title:"Cicle de vie d'une application web",
+            date:dat,
+            description:des
+
+        },
+        {
+            image:"https://cdn.pixabay.com/photo/2016/11/29/06/18/home-office-1867761_960_720.jpg",
+            category:"Dev",
+            title:"Remote job (Setup pour réussir )",
+            date:dat,
+            description:des
+        },
+        {
+            image:"https://cdn.pixabay.com/photo/2016/11/29/06/18/home-office-1867761_960_720.jpg",
+            category:"Dev",
+            title:"Débuter avec React Native",
+            date:dat,
+            description:des
+        },
+        {
+            image:"https://cdn.pixabay.com/photo/2013/03/04/21/01/server-90389_960_720.jpg",
+            category:"Réseau",
+            title:"Devenir Admin Réseau",
+            date:dat,
+            description:des
+        },
+        {
+            image:"https://cdn.pixabay.com/photo/2017/11/06/08/42/turn-on-2923046_960_720.jpg",
+            category:"Système",
+            title:"Automatisation de tache sous Linux",
+            date:dat,
+            description:des
+        },
+        {
+            image:"https://cdn.pixabay.com/photo/2017/11/19/23/56/hacking-2964100_960_720.jpg",
+            category:"Sécurité",
+            title:"Mise en place de IpTables",
+            date:dat,
+            description:des
+        },
+        {
+            image:"https://cdn.pixabay.com/photo/2017/11/19/23/56/hacking-2964100_960_720.jpg",
+            category:"Sécurité",
+            title:"Mise en place de IpTables",
+            date:dat,
+            description:des
+        }
+    ]
+
+    const logOut = ()=>{
+        navigation.navigate('Login');
+    }
   
-    
-  
-      <View style={styles.container1}>
 
- 
-  
-      </View>
-   
-        <View style={styles.tester} >
-        <TouchableOpacity
-           style={styles.button}
-           onPress={()=> Log_out()}
-        >
-          <Text>Log_out</Text>
-        </TouchableOpacity>
-        <View style={styles.readdata}>
-        <ReadData />
-        </View >
-      
-        </View>
-      </ScrollView >
-    );
+    const goToDetailPost = (image, title, description, category, date)=>{
+        navigation.navigate('DetailsPost', {
+            imageUri:image, 
+            title:title, 
+            description:description, 
+            category:category,
+            date:date
+        })
     }
 
-    const styles = StyleSheet.create({
-        container: {
-          flex: 1,
-          backgroundColor: '#fff',
-        },
-        tester: {
-          opacity:0.8,
-        },
-        readdata:{
-           marginTop:50,
-           marginBottom:10,
-        },
 
-        bodyText:{
-          width:'98%',
-          height:100,
-          justifyContent:'center',
-          alignItems:'center',
-          marginTop:29,
-          backgroundColor:'black',
-          padding:20,
-          margin:5
-        },
-        DateAndCategory:{
-          flexDirection:'row',
-           justifyContent:'flex-start',
-           marginLeft:10
-        },
-        Date:{
-          color:'white',
-        },
-        Category:{
-          color:'white',
-        },
-        container1:{
-          backgroundColor:'black',
-          width:'100%',
-        },
-        imageBackground:{
-          width:'100%',
-          height:200,
-          justifyContent:'flex-end',
-        },
-        text:{
-          color:'white',
-          fontSize:30,
-          lineHeight:50,
-          textAlign:'justify',
-          backgroundColor:'#000000c0',
-          marginLeft:10,
-        },
 
-        imageStyle:{
-           borderRadius:10,
-        },
-      });
+    //  <ReadData />
+    return(
 
-      
-       export default DetailPostScreen;
+      <View style={{flex:1}}>
+           <ScrollView>
+      <View>
+          <View style={styles.topBar} >
+              <View style={styles.titleContainer} >
+                  <Text style={styles.titleStyle}>TDSI</Text>
+                  <Text style={styles.desStyle} >Blog</Text>
+              </View>
+
+              <Pressable style={styles.logOutStyle} onPress={()=>logOut()} >
+                  <Text style={styles.logOutText} >Se déconnecter</Text>
+                  <Icon 
+                      name="log-out" 
+                      size={30} 
+                      color="#000" 
+                      style={{transform:[{rotate:"180deg"}]}}
+                  />
+              </Pressable>
+          </View>
+
+          <View style={styles.catContainer}> 
+                  <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} >
+                  {categories.map((category, index) => {
+                      return(
+                          <Category
+                              value={category}
+                              onPress={()=>setSelectedCategory(category)}
+                              selected={selectedCategory===category}
+                              key={`${category}-${index}`}
+                          />
+                      )
+                  })}
+                  </ScrollView>
+              </View>
+
+
+          <View style={styles.blogs} >{
+              Data.map((element, index) =>{
+                  return(
+                      (selectedCategory == element.category) || (selectedCategory=='Tous') ?  
+                      (<Post
+                          key={`${element.title.split(" ").join("_")}-${index}`}
+                          imageUri={element.image}
+                          category={element.category}
+                          title={element.title}
+                          date={element.date}
+                          style={{felx:2}}
+                          onPress={()=> goToDetailPost(element.image, element.title, element.description, element.category, element.date)}
+                      />) : null
+                  )
+              })
+          }</View>
+          <ReadData />
+      </View>
+  </ScrollView>
+  <Pressable 
+                  style={styles.plus}
+                  onPress={()=>navigation.navigate("Blog")}
+              >
+              <Pluscircle name="pluscircle" size={60} color="#FBDE4B" />
+              </Pressable>
+      </View>
+  )
+}
+
+export default DetailPostScreen;
+
+const styles = StyleSheet.create({
+  topBar:{
+      display:'flex',
+      flexDirection:'row',
+      justifyContent:'space-between',
+      marginTop:40,
+  },
+  titleStyle: {
+  fontSize:25,
+  fontWeight:'bold',
+   },
+desStyle:{
+  color:'#FBDE4B',
+  fontSize:15,
+  fontWeight:'bold'
+},
+  titleContainer:{
+      margin:20
+  },
+  logOutStyle:{
+      margin:20,
+      display:'flex',
+      flexDirection:'row',
+      alignItems:'center'
+  },
+  logOutText:{
+      fontSize:20,
+      fontWeight:'bold',
+      marginRight:7
+  },
+  img:{
+      // width:
+  },
+  img:{
+      // width:
+  },
+
+  logo: {
+      width: 142,
+      height: 116,
+  },
+  // blogs:{
+  //     display:'flex',
+  //     flexDirection:'row',
+  //     alignItems: "center",
+  //     flexWrap: "wrap",
+  //     position: "relative"
+
+  // },
+  blogs:{
+      display:'flex',
+      flexDirection:'row',
+      flexWrap:'wrap',
+      // backgroundColor:'red',
+      marginBottom:20,
+      position:'relative'
+  },
+
+  view1: {
+      // backgroundColor: "blue",
+      flexDirection: "column",
+  },
+
+  plus: {
+      marginBottom: 20,
+      // marginRight: 20,
+      position: "absolute",
+      right: 20,
+      bottom:0,
+      backgroundColor: "black",
+      borderRadius: 35
+  }
+})
